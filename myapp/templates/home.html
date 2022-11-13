@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href='{% static 'main.css' %}?{% now "U" %}'>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>ASOIAF Tactic Cards</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='main.js'></script>
+</head>
+<body style="background-color: black;">
+    <form method="post">
+    {% csrf_token %}
+    <img src="https://asoiaf-app.s3.us-west-1.amazonaws.com/greyjoy-logo.png" id='greyjoy_logo'style="max-height: 200px;">
+    <button type='button' name="draw" id="draw">Draw</button>
+    <!-- <button type='button' name="discard" id="discard">Discard</button> -->
+    <div style="display: flex; max-width: 500px;">
+    {% for card in deck %}
+    <div class = 'box'>
+        <img src= {{ card }} class= 'card' style="max-height: 200px; display: none;">
+    </div>
+    {% endfor %}
+    </div>
+    </form>
+</body>
+
+<script>
+    //give cards ids
+    function addOctDate() {
+        var cls = document.getElementsByClassName("card"); 
+        for (n=0, length = cls.length; n < length; n++) {
+            cls[n].id= "card" + (n + 1); 
+        }
+    }; 
+    addOctDate()
+</script>
+<script>
+    const card1 = document.getElementById('card1')
+    const card2 = document.getElementById('card2')
+    const card3 = document.getElementById('card3')
+    const card4 = document.getElementById('card4')
+    const card5 = document.getElementById('card5')
+    const card6 = document.getElementById('card6')
+    const card7 = document.getElementById('card7')
+    const card8 = document.getElementById('card8')
+    const card9 = document.getElementById('card9')
+    const card10 = document.getElementById('card10')
+    const card11 = document.getElementById('card11')
+    const card12 = document.getElementById('card12')
+    const card13 = document.getElementById('card13')
+    const card14 = document.getElementById('card14')
+
+    card1.addEventListener('click', function handleClick() {
+        card1.style.display = 'none';
+    } 
+        );
+    card2.addEventListener('click', function handleClick() {
+        card2.style.display = 'none';
+    } 
+        );
+    card3.addEventListener('click', function handleClick() {
+        card3.style.display = 'none';
+    } 
+        );
+    card4.addEventListener('click', function handleClick() {
+        card4.style.display = 'none';
+    } 
+        );
+    card5.addEventListener('click', function handleClick() {
+        card5.style.display = 'none';
+    } 
+        );
+    card6.addEventListener('click', function handleClick() {
+        card6.style.display = 'none';
+    } 
+        );
+    card7.addEventListener('click', function handleClick() {
+        card7.style.display = 'none';
+    } 
+        );              
+    card8.addEventListener('click', function handleClick() {
+        card8.style.display = 'none';
+    }
+        );
+    card9.addEventListener('click', function handleClick() {
+        card9.style.display = 'none';
+    } 
+        );
+    card10.addEventListener('click', function handleClick() {
+        card10.style.display = 'none';
+    } 
+        );
+    card11.addEventListener('click', function handleClick() {
+        card11.style.display = 'none';
+    } 
+        );
+    card12.addEventListener('click', function handleClick() {
+        card12.style.display = 'none';
+    } 
+        );
+    card13.addEventListener('click', function handleClick() {
+        card13.style.display = 'none';
+    } 
+        );
+    card14.addEventListener('click', function handleClick() {
+        card14.style.display = 'none';
+    } 
+        );
+
+</script>
+<script>
+
+    var array = ['card1', 'card2', 'card3', 'card4', 'card5', 'card6', 'card7', 'card8', 'card9', 'card10', 'card11', 'card12', 'card13', 'card14']
+    const draw = document.getElementById('draw')
+
+    draw.addEventListener('click', function handleClick() {
+        const random = Math.floor(Math.random() * array.length);
+        var rand_card = document.getElementById(array[random]); 
+        if (rand_card.style.display == 'inline-block') {
+            //alert(rand_card.id)
+            handleClick() 
+        }
+        rand_card.style.display = 'inline-block';
+        // const test = document.getElementById('card1')
+        // test.style.display = 'none';
+    } 
+        );
+
+
+</script>
+
+</html>
