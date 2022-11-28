@@ -15,27 +15,38 @@
     <img src="https://asoiaf-app.s3.us-west-1.amazonaws.com/greyjoy-logo.png" id='greyjoy_logo'style="max-height: 200px;">
     <button type='button' name="draw" id="draw">Draw</button>
     <!-- <button type='button' name="discard" id="discard">Discard</button> -->
-    <div style="display: flex; max-width: 500px;">
+    <h2 style="color:gold">Your Hand</h2>
+    <div style="display: flex; max-width: 500px; min-height: 200px;" id="draw_pile">
     {% for card in deck %}
-    <div class = 'box'>
-        <img src= {{ card }} class= 'card' style="max-height: 200px; display: none;">
+    <div class='box'>
+        <img src= {{ card }} class='card' style="max-height: 200px; display: none;" title="deck">
     </div>
     {% endfor %}
     </div>
+    </div>
+    <h2 style="color:gold">Discard Pile</h2>
+    <div style="display: flex; max-width: 500px;" id="discard_pile">
+
+    </div>
+
     </form>
 </body>
 
-<script>
-    //give cards ids
+<script title="give card and box ids">
     function addOctDate() {
         var cls = document.getElementsByClassName("card"); 
         for (n=0, length = cls.length; n < length; n++) {
             cls[n].id= "card" + (n + 1); 
         }
+        var box = document.getElementsByClassName("box"); 
+        for (n=0, length = box.length; n < length; n++) {
+            box[n].id= "box" + (n + 1); 
+        }
     }; 
     addOctDate()
 </script>
-<script>
+
+<script title="click_card">
     const card1 = document.getElementById('card1')
     const card2 = document.getElementById('card2')
     const card3 = document.getElementById('card3')
@@ -50,66 +61,179 @@
     const card12 = document.getElementById('card12')
     const card13 = document.getElementById('card13')
     const card14 = document.getElementById('card14')
+    const box1 = document.getElementById('box1')
+    const box2 = document.getElementById('box2')
+    const box3 = document.getElementById('box3')
+    const box4 = document.getElementById('box4')
+    const box5 = document.getElementById('box5')
+    const box6 = document.getElementById('box6')
+    const box7 = document.getElementById('box7')
+    const box8 = document.getElementById('box8')
+    const box9 = document.getElementById('box9')
+    const box10 = document.getElementById('box10')
+    const box11 = document.getElementById('box11')
+    const box12 = document.getElementById('box12')
+    const box13 = document.getElementById('box13')
+    const box14 = document.getElementById('box14')
+    const discard_pile = document.getElementById('discard_pile')
+    const draw_pile = document.getElementById('draw_pile')
 
     card1.addEventListener('click', function handleClick() {
-        card1.style.display = 'none';
+        if (card1.title == 'discard'){
+        (box1).append(card1)
+        card1.title = 'in-hand'
+        return
+    
+    }
+        (discard_pile).append(card1)
+        card1.title = 'discard';
     } 
         );
     card2.addEventListener('click', function handleClick() {
-        card2.style.display = 'none';
+        if (card2.title == 'discard'){
+        (box2).append(card2)
+        card2.title = 'in-hand'
+        return
+    
+    }
+        (discard_pile).append(card2)
+        card2.title = 'discard';
     } 
         );
     card3.addEventListener('click', function handleClick() {
-        card3.style.display = 'none';
+        if (card3.title == 'discard'){
+        (box3).append(card3)
+        card3.title = 'in-hand'
+        return
+    
+    }
+        (discard_pile).append(card3)
+        card3.title = 'discard';
     } 
         );
     card4.addEventListener('click', function handleClick() {
-        card4.style.display = 'none';
+        if (card4.title == 'discard'){
+        (box4).append(card4)
+        card4.title = 'in-hand'
+        return
+    
+    }        (discard_pile).append(card4)
+        card4.title = 'discard';
     } 
         );
     card5.addEventListener('click', function handleClick() {
-        card5.style.display = 'none';
+        if (card5.title == 'discard'){
+        (box5).append(card5)
+        card5.title = 'in-hand'
+        return
+    
+    }        (discard_pile).append(card5)
+        card5.title = 'discard';
     } 
         );
     card6.addEventListener('click', function handleClick() {
-        card6.style.display = 'none';
+        if (card6.title == 'discard'){
+        (box6).append(card6)
+        card6.title = 'in-hand'
+        return
+    
+    }
+        (discard_pile).append(card6)
+        card6.title = 'discard';
     } 
         );
     card7.addEventListener('click', function handleClick() {
-        card7.style.display = 'none';
+        if (card7.title == 'discard'){
+        (box7).append(card7)
+        card7.title = 'in-hand'
+        return
+    
+    }
+        (discard_pile).append(card7)
+        card7.title = 'discard';
     } 
         );              
     card8.addEventListener('click', function handleClick() {
-        card8.style.display = 'none';
+        if (card8.title == 'discard'){
+        (box8).append(card8)
+        card8.title = 'in-hand'
+        return
+    
+    }
+        (discard_pile).append(card8)
+        card8.title = 'discard';
     }
         );
     card9.addEventListener('click', function handleClick() {
-        card9.style.display = 'none';
+        if (card9.title == 'discard'){
+        (box9).append(card9)
+        card9.title = 'in-hand'
+        return
+    
+    }
+        (discard_pile).append(card9)
+        card9.title = 'discard';
     } 
         );
     card10.addEventListener('click', function handleClick() {
-        card10.style.display = 'none';
+        if (card10.title == 'discard'){
+        (box10).append(card10)
+        card10.title = 'in-hand'
+        return
+    
+    }
+        (discard_pile).append(card10)
+        card10.title = 'discard';
     } 
         );
     card11.addEventListener('click', function handleClick() {
-        card11.style.display = 'none';
+        if (card11.title == 'discard'){
+        (box11).append(card11)
+        card11.title = 'in-hand'
+        return
+    
+    }
+        (discard_pile).append(card11)
+        card11.title = 'discard';
     } 
         );
     card12.addEventListener('click', function handleClick() {
-        card12.style.display = 'none';
+        if (card12.title == 'discard'){
+        (box12).append(card12)
+        card12.title = 'in-hand'
+        return
+    
+    }
+        (discard_pile).append(card12)
+        card12.title = 'discard';
     } 
         );
     card13.addEventListener('click', function handleClick() {
-        card13.style.display = 'none';
+        if (card13.title == 'discard'){
+        (box13).append(card13)
+        card13.title = 'in-hand'
+        return
+    
+    }
+        (discard_pile).append(card13)
+        card13.title = 'discard';
     } 
         );
     card14.addEventListener('click', function handleClick() {
-        card14.style.display = 'none';
+        if (card14.title == 'discard'){
+        (box14).append(card14)
+        card14.title = 'in-hand'
+        return
+    
+    }
+        (discard_pile).append(card14)
+        card14.title = 'discard';
     } 
         );
 
 </script>
-<script>
+
+<script title="draw">
 
     var array = ['card1', 'card2', 'card3', 'card4', 'card5', 'card6', 'card7', 'card8', 'card9', 'card10', 'card11', 'card12', 'card13', 'card14']
     const draw = document.getElementById('draw')
@@ -117,13 +241,14 @@
     draw.addEventListener('click', function handleClick() {
         const random = Math.floor(Math.random() * array.length);
         var rand_card = document.getElementById(array[random]); 
-        if (rand_card.style.display == 'inline-block') {
-            //alert(rand_card.id)
+        if (rand_card.style.display == 'inline-block' | rand_card.title == 'discard') {
             handleClick() 
+            return;
         }
-        rand_card.style.display = 'inline-block';
-        // const test = document.getElementById('card1')
-        // test.style.display = 'none';
+        rand_card.style.display = 'inline-block'
+        rand_card.title = 'in-hand';
+        return;
+
     } 
         );
 

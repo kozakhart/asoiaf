@@ -1,18 +1,9 @@
 from django.shortcuts import render
-#from .classes import Greyjoy
 from .models import Greyjoy
-# Create your views here.
 
 def home(request):
     create = create_cards()
-    print(Greyjoy.objects.filter(card_num=1).values_list('url'))
-    #if request.method == 'POST':
-       # if 'draw' in request.POST:
-        #    create.append('https://asoiaf-app.s3.us-west-1.amazonaws.com/bless-with-stone-bless-with-steel.jpg')
-        #if 'discard' in request.POST:
-         #   create.remove('https://asoiaf-app.s3.us-west-1.amazonaws.com/bless-with-stone-bless-with-steel.jpg')
-          #  print(create[1])
-        
+    print(Greyjoy.objects.filter(card_num=1).values_list('url'))  
     return  render(request, 'home.html', {'deck':create})
 
 
@@ -37,11 +28,9 @@ def create_cards():
         print(card.url)
     return deck
 
-    
-
 def greyjoy_cards(url):
     basic_cards = {
-    'bless-with-stone-bless-with-steel': 'https://asoiaf-app.s3.us-west-1.amazonaws.com/bless-with-stone-bless-with-steel.jpg',
+    'bless-with-stone-bless-with-steel': 'https://asoiaf-app.s3.us-west-1.amazona`ws.com/bless-with-stone-bless-with-steel.jpg',
     'raiding-call': 'https://asoiaf-app.s3.us-west-1.amazonaws.com/raiding-call.jpg', 
     'finger-dance': 'https://asoiaf-app.s3.us-west-1.amazonaws.com/finger-dance.jpg', 
     'the-iron-price': 'https://asoiaf-app.s3.us-west-1.amazonaws.com/the-iron-price.jpg',
