@@ -10,6 +10,28 @@
     <script src='main.js'></script>
 </head>
 <body style="background-color: black;">
+    <nav class="navbar">
+
+        <!-- LOGO -->
+        
+        <div class="logo">ASOIAF Card Shuffler</div>
+        
+        <!-- NAVIGATION MENU -->
+        
+        <ul class="nav-links">
+        
+        <!-- NAVIGATION MENUS -->
+        
+        <div class="menu">
+        {% for logo in logos %}
+        <li><img src={{ logo.url }} style="height: 10vh;"></li>
+        {% endfor %}
+        </div>
+        
+        </ul>
+        
+        </nav>
+
     <form method="post">
     {% csrf_token %}
     <img src="https://asoiaf-app.s3.us-west-1.amazonaws.com/greyjoy-logo.png" id='greyjoy_logo'style="max-height: 200px;">
@@ -17,18 +39,23 @@
     <!-- <button type='button' name="discard" id="discard">Discard</button> -->
     <h2 style="color:gold">Your Hand</h2>
     <div style="display: flex; max-width: 500px; min-height: 200px;" id="draw_pile">
-    {% for card in deck %}
+    {% for card in greyjoy %}
     <div class='box'>
-        <img src= {{ card }} class='card' style="max-height: 200px; display: none;" title="deck">
+        <img src= {{ card.url }} class='card' style="max-height: 200px; display: none;" title="deck">
+    </div>
+    <div class='box'>
+        <img src= {{ card.url }} class='card' style="max-height: 200px; display: none;" title="deck">
     </div>
     {% endfor %}
     </div>
     </div>
+    
     <h2 style="color:gold">Discard Pile</h2>
+    {% for logo in greyjoy %}
+    <h1 style="color:#fff;">{{ logo.name }}</h1>
+    {% endfor %}
     <div style="display: flex; max-width: 500px;" id="discard_pile">
-
     </div>
-
     </form>
 </body>
 
@@ -36,211 +63,256 @@
     function addOctDate() {
         var cls = document.getElementsByClassName("card"); 
         for (n=0, length = cls.length; n < length; n++) {
-            cls[n].id= "card" + (n + 1); 
+            cls[n].id= "card" + (n); 
         }
         var box = document.getElementsByClassName("box"); 
         for (n=0, length = box.length; n < length; n++) {
-            box[n].id= "box" + (n + 1); 
+            box[n].id= "box" + (n); 
         }
     }; 
     addOctDate()
 </script>
 
 <script title="click_card">
-    const card1 = document.getElementById('card1')
-    const card2 = document.getElementById('card2')
-    const card3 = document.getElementById('card3')
-    const card4 = document.getElementById('card4')
-    const card5 = document.getElementById('card5')
-    const card6 = document.getElementById('card6')
-    const card7 = document.getElementById('card7')
-    const card8 = document.getElementById('card8')
-    const card9 = document.getElementById('card9')
-    const card10 = document.getElementById('card10')
-    const card11 = document.getElementById('card11')
-    const card12 = document.getElementById('card12')
-    const card13 = document.getElementById('card13')
-    const card14 = document.getElementById('card14')
-    const box1 = document.getElementById('box1')
-    const box2 = document.getElementById('box2')
-    const box3 = document.getElementById('box3')
-    const box4 = document.getElementById('box4')
-    const box5 = document.getElementById('box5')
-    const box6 = document.getElementById('box6')
-    const box7 = document.getElementById('box7')
-    const box8 = document.getElementById('box8')
-    const box9 = document.getElementById('box9')
-    const box10 = document.getElementById('box10')
-    const box11 = document.getElementById('box11')
-    const box12 = document.getElementById('box12')
-    const box13 = document.getElementById('box13')
-    const box14 = document.getElementById('box14')
-    const discard_pile = document.getElementById('discard_pile')
-    const draw_pile = document.getElementById('draw_pile')
+    var card_array = [{% for card in greyjoy %} 
+    {name : "card{{ card.card_num }}"},
+    {% endfor %}
+    ]
+    var box_array = [{% for card in greyjoy %} 
+    {name : "box{{ card.card_num }}"},
+    {% endfor %}
+    ]
 
-    card1.addEventListener('click', function handleClick() {
-        if (card1.title == 'discard'){
-        (box1).append(card1)
-        card1.title = 'in-hand'
+    for (var i = 0; i < N; i ++){
+    result[i] = i;
+    }
+    
+    for (card in card_array){
+        var card = document.getElementById(card_array["name"])
+        var box = document.getElementById(box_array["name"])
+    }
+        card.addEventListener('click', function handleClick() {
+        if (card.title == 'discard'){
+        (box).append(card)
+        card.title = 'in-hand'
         return
     
     }
-        (discard_pile).append(card1)
-        card1.title = 'discard';
+        (discard_pile).append(card)
+        card.title = 'discard';
     } 
-        );
-    card2.addEventListener('click', function handleClick() {
-        if (card2.title == 'discard'){
-        (box2).append(card2)
-        card2.title = 'in-hand'
-        return
+        );  
+    // }
+    // card1.addEventListener('click', function handleClick() {
+    //     if (card1.title == 'discard'){
+    //     (box1).append(card1)
+    //     card1.title = 'in-hand'
+    //     return
     
-    }
-        (discard_pile).append(card2)
-        card2.title = 'discard';
-    } 
-        );
-    card3.addEventListener('click', function handleClick() {
-        if (card3.title == 'discard'){
-        (box3).append(card3)
-        card3.title = 'in-hand'
-        return
+    // }
+    //     (discard_pile).append(card1)
+    //     card1.title = 'discard';
+    // } 
+    //     );
+
     
-    }
-        (discard_pile).append(card3)
-        card3.title = 'discard';
-    } 
-        );
-    card4.addEventListener('click', function handleClick() {
-        if (card4.title == 'discard'){
-        (box4).append(card4)
-        card4.title = 'in-hand'
-        return
+    // const card1 = document.getElementById('card1')
+    // const card2 = document.getElementById('card2')
+    // const card3 = document.getElementById('card3')
+    // const card4 = document.getElementById('card4')
+    // const card5 = document.getElementById('card5')
+    // const card6 = document.getElementById('card6')
+    // const card7 = document.getElementById('card7')
+    // const card8 = document.getElementById('card8')
+    // const card9 = document.getElementById('card9')
+    // const card10 = document.getElementById('card10')
+    // const card11 = document.getElementById('card11')
+    // const card12 = document.getElementById('card12')
+    // const card13 = document.getElementById('card13')
+    // const card14 = document.getElementById('card14')
+    // const box1 = document.getElementById('box1')
+    // const box2 = document.getElementById('box2')
+    // const box3 = document.getElementById('box3')
+    // const box4 = document.getElementById('box4')
+    // const box5 = document.getElementById('box5')
+    // const box6 = document.getElementById('box6')
+    // const box7 = document.getElementById('box7')
+    // const box8 = document.getElementById('box8')
+    // const box9 = document.getElementById('box9')
+    // const box10 = document.getElementById('box10')
+    // const box11 = document.getElementById('box11')
+    // const box12 = document.getElementById('box12')
+    // const box13 = document.getElementById('box13')
+    // const box14 = document.getElementById('box14')
+    // const discard_pile = document.getElementById('discard_pile')
+    // const draw_pile = document.getElementById('draw_pile')
+
+    // card1.addEventListener('click', function handleClick() {
+    //     if (card1.title == 'discard'){
+    //     (box1).append(card1)
+    //     card1.title = 'in-hand'
+    //     return
     
-    }        (discard_pile).append(card4)
-        card4.title = 'discard';
-    } 
-        );
-    card5.addEventListener('click', function handleClick() {
-        if (card5.title == 'discard'){
-        (box5).append(card5)
-        card5.title = 'in-hand'
-        return
+    // }
+    //     (discard_pile).append(card1)
+    //     card1.title = 'discard';
+    // } 
+    //     );
+    // card2.addEventListener('click', function handleClick() {
+    //     if (card2.title == 'discard'){
+    //     (box2).append(card2)
+    //     card2.title = 'in-hand'
+    //     return
     
-    }        (discard_pile).append(card5)
-        card5.title = 'discard';
-    } 
-        );
-    card6.addEventListener('click', function handleClick() {
-        if (card6.title == 'discard'){
-        (box6).append(card6)
-        card6.title = 'in-hand'
-        return
+    // }
+    //     (discard_pile).append(card2)
+    //     card2.title = 'discard';
+    // } 
+    //     );
+    // card3.addEventListener('click', function handleClick() {
+    //     if (card3.title == 'discard'){
+    //     (box3).append(card3)
+    //     card3.title = 'in-hand'
+    //     return
     
-    }
-        (discard_pile).append(card6)
-        card6.title = 'discard';
-    } 
-        );
-    card7.addEventListener('click', function handleClick() {
-        if (card7.title == 'discard'){
-        (box7).append(card7)
-        card7.title = 'in-hand'
-        return
+    // }
+    //     (discard_pile).append(card3)
+    //     card3.title = 'discard';
+    // } 
+    //     );
+    // card4.addEventListener('click', function handleClick() {
+    //     if (card4.title == 'discard'){
+    //     (box4).append(card4)
+    //     card4.title = 'in-hand'
+    //     return
     
-    }
-        (discard_pile).append(card7)
-        card7.title = 'discard';
-    } 
-        );              
-    card8.addEventListener('click', function handleClick() {
-        if (card8.title == 'discard'){
-        (box8).append(card8)
-        card8.title = 'in-hand'
-        return
+    // }        (discard_pile).append(card4)
+    //     card4.title = 'discard';
+    // } 
+    //     );
+    // card5.addEventListener('click', function handleClick() {
+    //     if (card5.title == 'discard'){
+    //     (box5).append(card5)
+    //     card5.title = 'in-hand'
+    //     return
     
-    }
-        (discard_pile).append(card8)
-        card8.title = 'discard';
-    }
-        );
-    card9.addEventListener('click', function handleClick() {
-        if (card9.title == 'discard'){
-        (box9).append(card9)
-        card9.title = 'in-hand'
-        return
+    // }        (discard_pile).append(card5)
+    //     card5.title = 'discard';
+    // } 
+    //     );
+    // card6.addEventListener('click', function handleClick() {
+    //     if (card6.title == 'discard'){
+    //     (box6).append(card6)
+    //     card6.title = 'in-hand'
+    //     return
     
-    }
-        (discard_pile).append(card9)
-        card9.title = 'discard';
-    } 
-        );
-    card10.addEventListener('click', function handleClick() {
-        if (card10.title == 'discard'){
-        (box10).append(card10)
-        card10.title = 'in-hand'
-        return
+    // }
+    //     (discard_pile).append(card6)
+    //     card6.title = 'discard';
+    // } 
+    //     );
+    // card7.addEventListener('click', function handleClick() {
+    //     if (card7.title == 'discard'){
+    //     (box7).append(card7)
+    //     card7.title = 'in-hand'
+    //     return
     
-    }
-        (discard_pile).append(card10)
-        card10.title = 'discard';
-    } 
-        );
-    card11.addEventListener('click', function handleClick() {
-        if (card11.title == 'discard'){
-        (box11).append(card11)
-        card11.title = 'in-hand'
-        return
+    // }
+    //     (discard_pile).append(card7)
+    //     card7.title = 'discard';
+    // } 
+    //     );              
+    // card8.addEventListener('click', function handleClick() {
+    //     if (card8.title == 'discard'){
+    //     (box8).append(card8)
+    //     card8.title = 'in-hand'
+    //     return
     
-    }
-        (discard_pile).append(card11)
-        card11.title = 'discard';
-    } 
-        );
-    card12.addEventListener('click', function handleClick() {
-        if (card12.title == 'discard'){
-        (box12).append(card12)
-        card12.title = 'in-hand'
-        return
+    // }
+    //     (discard_pile).append(card8)
+    //     card8.title = 'discard';
+    // }
+    //     );
+    // card9.addEventListener('click', function handleClick() {
+    //     if (card9.title == 'discard'){
+    //     (box9).append(card9)
+    //     card9.title = 'in-hand'
+    //     return
     
-    }
-        (discard_pile).append(card12)
-        card12.title = 'discard';
-    } 
-        );
-    card13.addEventListener('click', function handleClick() {
-        if (card13.title == 'discard'){
-        (box13).append(card13)
-        card13.title = 'in-hand'
-        return
+    // }
+    //     (discard_pile).append(card9)
+    //     card9.title = 'discard';
+    // } 
+    //     );
+    // card10.addEventListener('click', function handleClick() {
+    //     if (card10.title == 'discard'){
+    //     (box10).append(card10)
+    //     card10.title = 'in-hand'
+    //     return
     
-    }
-        (discard_pile).append(card13)
-        card13.title = 'discard';
-    } 
-        );
-    card14.addEventListener('click', function handleClick() {
-        if (card14.title == 'discard'){
-        (box14).append(card14)
-        card14.title = 'in-hand'
-        return
+    // }
+    //     (discard_pile).append(card10)
+    //     card10.title = 'discard';
+    // } 
+    //     );
+    // card11.addEventListener('click', function handleClick() {
+    //     if (card11.title == 'discard'){
+    //     (box11).append(card11)
+    //     card11.title = 'in-hand'
+    //     return
     
-    }
-        (discard_pile).append(card14)
-        card14.title = 'discard';
-    } 
-        );
+    // }
+    //     (discard_pile).append(card11)
+    //     card11.title = 'discard';
+    // } 
+    //     );
+    // card12.addEventListener('click', function handleClick() {
+    //     if (card12.title == 'discard'){
+    //     (box12).append(card12)
+    //     card12.title = 'in-hand'
+    //     return
+    
+    // }
+    //     (discard_pile).append(card12)
+    //     card12.title = 'discard';
+    // } 
+    //     );
+    // card13.addEventListener('click', function handleClick() {
+    //     if (card13.title == 'discard'){
+    //     (box13).append(card13)
+    //     card13.title = 'in-hand'
+    //     return
+    
+    // }
+    //     (discard_pile).append(card13)
+    //     card13.title = 'discard';
+    // } 
+    //     );
+    // card14.addEventListener('click', function handleClick() {
+    //     if (card14.title == 'discard'){
+    //     (box14).append(card14)
+    //     card14.title = 'in-hand'
+    //     return
+    
+    // }
+    //     (discard_pile).append(card14)
+    //     card14.title = 'discard';
+    // } 
+    //     );
 
 </script>
 
-<script title="draw">
-
-    var array = ['card1', 'card2', 'card3', 'card4', 'card5', 'card6', 'card7', 'card8', 'card9', 'card10', 'card11', 'card12', 'card13', 'card14']
+<script type="text/javascript" title="draw">
+    var array = [{% for card in greyjoy %} 
+    {name : "card{{ card.card_num }}"},
+    {% endfor %}
+    ]
+    // var array = ['card1', 'card2', 'card3', 'card4', 'card5', 'card6', 'card7', 'card8', 'card9', 'card10', 'card11', 'card12', 'card13', 'card14']
     const draw = document.getElementById('draw')
 
     draw.addEventListener('click', function handleClick() {
         const random = Math.floor(Math.random() * array.length);
-        var rand_card = document.getElementById(array[random]); 
+        var rand_card = document.getElementById(array[random]["name"]); 
         if (rand_card.style.display == 'inline-block' | rand_card.title == 'discard') {
             handleClick() 
             return;
